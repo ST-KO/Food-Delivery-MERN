@@ -32,6 +32,7 @@ const loginUser = async (req, res) => {
   }
 };
 
+// Creating Token
 const createToken = (id) => {
   const token = jwt.sign({ id }, process.env.JWT_SECRET);
   return token;
@@ -48,7 +49,7 @@ const registerUser = async (req, res) => {
     if (isexists) {
       return res.status(400).json({
         success: false,
-        message: "User with given meail alread exists",
+        message: "User with given email already exists",
       });
     }
 

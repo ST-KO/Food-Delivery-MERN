@@ -24,7 +24,7 @@ const placeOrder = async (req, res) => {
     // Cleaning users' cartData after saving
     await userModel.findByIdAndUpdate(req.body.userId, { cartData: {} });
 
-    // Necessay for Stipe payment
+    // Necessary for Stipe payment
     const line_items = req.body.items.map((item) => ({
       price_data: {
         currency: "aud",
@@ -90,14 +90,14 @@ const userOrders = async (req, res) => {
   }
 };
 
-// Listing orders from admin panel
-const listOrders = async (rea, res) => {
+// Listing orders for admin panel
+const listOrders = async (req, res) => {
   try {
     const orders = await orderModel.find({});
     res.status(200).json({ success: true, data: orders });
   } catch (err) {
     console.log(err);
-    res.json({ success: false, message: err.message });
+    res.status(500).json({ success: false, message: err.message });
   }
 };
 

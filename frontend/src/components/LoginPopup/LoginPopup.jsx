@@ -6,7 +6,7 @@ import { StoreContext } from '../../context/StoreContext';
 
 const LoginPopup = ({setShowLogin}) => {
   
-    const {url, setToken} = useContext(StoreContext);
+    const {url, setToken, token} = useContext(StoreContext);
     
     const [currentState, setCurrentState] = useState("Sign Up");
     const [data, setData] = useState({
@@ -39,6 +39,7 @@ const LoginPopup = ({setShowLogin}) => {
        
         if(response.data.success){
             setToken(response.data.token);
+            console.log(token)
             localStorage.setItem("token", response.data.token);
             setShowLogin(false);
         } else{
